@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "680877764226",
+    "project_id": "docdog-viewer",
+    "storage_bucket": "docdog-viewer.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680877764226:android:2bd4827bbc2a94bc950e9b",
+        "android_client_info": {
+          "package_name": "sschoi.docdog.viewer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXag41xyeR1gx6GeWLc_PeCfadwSzS4QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
