@@ -24,6 +24,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import android.widget.ImageView
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -46,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var layoutIntro: View
     private lateinit var layoutMainContent: LinearLayout
     private lateinit var tvLoadingMessage: TextView
+    private lateinit var adView: AdView
     
     private lateinit var webView: WebView
     private lateinit var btnSelectPpt: Button
@@ -76,6 +81,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // AdMob 초기화
+        MobileAds.initialize(this) {}
+
         initViews()
         setupWebView()
         setupTabs()
@@ -96,6 +104,10 @@ class MainActivity : AppCompatActivity() {
             showClearHistoryDialog()
         }
 
+        // 광고 로드
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
         // 인트로 시퀀스 시작
         startIntroSequence()
     }
@@ -109,6 +121,7 @@ class MainActivity : AppCompatActivity() {
         layoutIntro = findViewById(R.id.layoutIntro)
         layoutMainContent = findViewById(R.id.layoutMainContent)
         tvLoadingMessage = findViewById(R.id.tvLoadingMessage)
+        adView = findViewById(R.id.adView)
         
         webView = findViewById(R.id.webView)
         btnSelectPpt = findViewById(R.id.btnSelectPpt)
@@ -121,14 +134,14 @@ class MainActivity : AppCompatActivity() {
             // 1. 2초 동안 인트로만 완벽하게 노출 (메인은 GONE 상태)
             delay(2000)
             
-            // 2. 메인 컨텐츠를 보이게 설정 (배경이 흰색이므로 인트로가 사라지는 동안 잔상 방지)
+            // 2. 메인 컨텐츠를 보이게 설정
             layoutMainContent.visibility = View.VISIBLE
             layoutMainContent.alpha = 1f
             
             // 3. 인트로 화면을 페이드 아웃하며 제거
             layoutIntro.animate()
                 .alpha(0f)
-                .setDuration(400) // 전환을 조금 더 빠르게
+                .setDuration(400)
                 .withEndAction {
                     layoutIntro.visibility = View.GONE
                 }
@@ -322,7 +335,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        adView.destroy()
         webView.destroy()
         super.onDestroy()
+    }
+
+    override fun onPause() {
+        adView.pause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adView.resume()
     }
 }
