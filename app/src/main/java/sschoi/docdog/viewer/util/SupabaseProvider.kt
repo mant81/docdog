@@ -1,18 +1,16 @@
-package sschoi.docdog.viewer
+package sschoi.docdog.viewer.util
 
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.storage.Storage
+import sschoi.docdog.viewer.BuildConfig
 
 /**
- * Supabase 설정을 관리하는 모듈
- * 
- * 보안을 위해 SUPABASE_URL과 SUPABASE_KEY는 local.properties에 정의되어 있으며,
- * build.gradle을 통해 BuildConfig로 주입됩니다.
+ * Supabase 클라이언트 인스턴스를 제공하는 프로바이더.
+ * local.properties의 설정을 기반으로 싱글톤 인스턴스를 관리합니다.
  */
-object SupabaseModule {
-    // BuildConfig를 통해 주입된 값을 사용 (import sschoi.docdog.viewer.BuildConfig 자동 연결)
+object SupabaseProvider {
     private val SUPABASE_URL = BuildConfig.SUPABASE_URL
     private val SUPABASE_KEY = BuildConfig.SUPABASE_KEY
 
