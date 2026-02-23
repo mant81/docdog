@@ -1,4 +1,4 @@
-package sschoi.docdog.viewer
+package com.sschoi.docdog
 
 import android.graphics.Bitmap
 import android.net.Uri
@@ -25,17 +25,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
-import android.widget.ImageView
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import sschoi.docdog.viewer.data.ExpireOption
-import sschoi.docdog.viewer.data.HistoryItem
-import sschoi.docdog.viewer.ui.HistoryAdapter
-import sschoi.docdog.viewer.ui.MainViewModel
-import sschoi.docdog.viewer.util.NetworkUtils
+import com.sschoi.docdog.data.ExpireOption
+import com.sschoi.docdog.data.HistoryItem
+import com.sschoi.docdog.ui.HistoryAdapter
+import com.sschoi.docdog.ui.MainViewModel
+import com.sschoi.docdog.util.NetworkUtils
 import java.net.URLEncoder
 
 class MainActivity : AppCompatActivity() {
@@ -134,14 +133,14 @@ class MainActivity : AppCompatActivity() {
             // 1. 2초 동안 인트로만 완벽하게 노출 (메인은 GONE 상태)
             delay(2000)
             
-            // 2. 메인 컨텐츠를 보이게 설정
+            // 2. 메인 컨텐츠를 보이게 설정 (배경이 흰색이므로 인트로가 사라지는 동안 잔상 방지)
             layoutMainContent.visibility = View.VISIBLE
             layoutMainContent.alpha = 1f
             
             // 3. 인트로 화면을 페이드 아웃하며 제거
             layoutIntro.animate()
                 .alpha(0f)
-                .setDuration(400)
+                .setDuration(400) // 전환을 조금 더 빠르게
                 .withEndAction {
                     layoutIntro.visibility = View.GONE
                 }

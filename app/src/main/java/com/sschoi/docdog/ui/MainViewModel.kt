@@ -1,4 +1,4 @@
-package sschoi.docdog.viewer.ui
+package com.sschoi.docdog.ui
 
 import android.content.Context
 import android.net.Uri
@@ -17,10 +17,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import sschoi.docdog.viewer.data.ExpireOption
-import sschoi.docdog.viewer.data.HistoryItem
-import sschoi.docdog.viewer.util.NetworkUtils
-import sschoi.docdog.viewer.util.SupabaseProvider
+import com.sschoi.docdog.data.ExpireOption
+import com.sschoi.docdog.data.HistoryItem
+import com.sschoi.docdog.util.NetworkUtils
+import com.sschoi.docdog.util.SupabaseProvider
 import java.util.UUID
 
 class MainViewModel : ViewModel() {

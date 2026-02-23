@@ -1,10 +1,10 @@
-package sschoi.docdog.viewer.util
+package com.sschoi.docdog.util
 
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.storage.Storage
-import sschoi.docdog.viewer.BuildConfig
+import com.sschoi.docdog.BuildConfig
 
 /**
  * Supabase 클라이언트 인스턴스를 제공하는 프로바이더.

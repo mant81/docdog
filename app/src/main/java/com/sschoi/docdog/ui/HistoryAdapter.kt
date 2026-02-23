@@ -1,4 +1,4 @@
-package sschoi.docdog.viewer.ui
+package com.sschoi.docdog.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import sschoi.docdog.viewer.R
-import sschoi.docdog.viewer.data.HistoryItem
+import com.sschoi.docdog.R
+import com.sschoi.docdog.data.HistoryItem
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

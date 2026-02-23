@@ -1,4 +1,4 @@
-package sschoi.docdog.viewer.util
+package com.sschoi.docdog.util
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,4 +1,4 @@
-package sschoi.docdog.viewer.data
+package com.sschoi.docdog.data
 
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration

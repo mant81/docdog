@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace "sschoi.docdog.viewer"
+    namespace "com.sschoi.docdog"
     compileSdk 34
 
     defaultConfig {
-        applicationId "sschoi.docdog.viewer"
+        applicationId "com.sschoi.docdog"
         minSdk 26
         targetSdk 34
         versionCode 1
