@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 android {
@@ -15,6 +16,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        File propertiesFile = rootProject.file("local.properties")
+        if (propertiesFile.exists()) {
+            properties.load(propertiesFile.newDataInputStream())
+        }
+
+        buildConfigField "String", "SUPABASE_URL", "\"${properties.getProperty('supabase.url', '')}\""
+        buildConfigField "String", "SUPABASE_KEY", "\"${properties.getProperty('supabase.key', '')}\""
     }
 
     buildTypes {
@@ -32,39 +42,51 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += 'META-INF/INDEX.LIST'
+            excludes += 'META-INF/DEPENDENCIES'
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
-    // Apache POI (PPTX 파싱용, 필요 시)
-    implementation "org.apache.poi:poi:5.2.3"
-    implementation "org.apache.poi:poi-ooxml:5.2.3"
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.0.1'
 
-    // Material Design (UI)
+    // Material Design
     implementation "com.google.android.material:material:1.11.0"
 
-    // Firebase BOM 관리
-    implementation platform("com.google.firebase:firebase-bom:33.7.0")
+    // Supabase
+    implementation platform("io.github.jan-tennert.supabase:bom:3.0.1")
+    implementation "io.github.jan-tennert.supabase:postgrest-kt"
+    implementation "io.github.jan-tennert.supabase:storage-kt"
+    implementation "io.github.jan-tennert.supabase:auth-kt"
+    
+    // Kotlin Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"
 
-    // Firebase Auth
-    implementation "com.google.firebase:firebase-auth"
-
-    // Firebase Firestore
-    implementation "com.google.firebase:firebase-firestore"
-
-    // Firebase Storage
-    implementation "com.google.firebase:firebase-storage"
+    // Ktor
+    implementation "io.ktor:ktor-client-android:3.0.1"
+    implementation "io.ktor:ktor-client-core:3.0.1"
 
     // WebView
     implementation "androidx.webkit:webkit:1.8.0"
 
-    // Common AndroidX dependencies
+    // Common AndroidX
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    implementation 'androidx.browser:browser:1.8.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
-
-apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutAbout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문서도그(DocDog) 서비스 안내"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. 보안 및 개인정보 보호"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="문서도그는 사용자의 문서를 서버에 영구히 저장하지 않습니다. 모든 문서는 보안 전송(HTTPS)을 통해 처리되며, 사용자가 선택한 만료 시간(1시간, 7일, 30일)이 지나면 클라우드 저장소에서 자동으로 영구 삭제됩니다."
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. Supabase Storage 기술"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="안전한 문서 관리를 위해 글로벌 클라우드 인프라인 Supabase Storage를 사용합니다. 생성된 문서는 암호화된 'Signed URL'을 통해서만 접근이 가능하며, 지정된 시간이 지나면 해당 URL과 파일 모두 접근 불가능한 상태가 됩니다."
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. Google Docs Viewer 연동"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="문서 뷰어는 Google의 공식 문서 엔진을 활용합니다. 이 과정에서 파일은 뷰어 서비스를 위해 일시적으로 사용되지만, 구글의 강력한 보안 인프라 하에서 안전하게 처리됩니다."
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="사용자님의 문서는 오직 뷰어 표시 목적으로만 사용되며, 그 외의 용도로 활용되지 않음을 보장합니다."
+            android:textStyle="italic"
+            android:layout_marginBottom="32dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="문서 미리보기 기능은 외부 뷰어 서비스를 통해 제공되며, 미리보기를 위해 파일이 일시적으로 외부 서버로 전송될 수 있습니다."
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- 만든 사람 정보 추가 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Developer Information"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@sschoi"
+            android:textSize="13sp"
+            android:textColor="#666666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mant@nate.com"
+            android:textSize="13sp"
+            android:textColor="#666666" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="http://github.com/mant81"
+            android:textSize="13sp"
+            android:textColor="#1976D2"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- app/src/main/res/values/values.xml -->
 <resources>
+    <!-- 신뢰감 있는 파란색 테마 -->
+    <color name="blue_primary">#1976D2</color>
+    <color name="blue_dark">#1565C0</color>
+    <color name="blue_light">#BBDEFB</color>
+    <color name="blue_accent">#03A9F4</color>
 
-    <color name="theme_color">#FF6200EE</color>
-    <color name="btn_active_color">#FF3700B3</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    <color name="color_green_500">#FF4CAF50</color>
-    <color name="color_green_700">#FF388E3C</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_dark">#424242</color>
 
+    <!-- 스플래시 및 아이콘 배경색 -->
+    <color name="splash_background">#9DD3FC</color>
+    <color name="ic_launcher_background">@color/blue_primary</color>
+    <color name="ic_launcher_foreground_content">#FFFFFF</color>
+
+    <color name="theme_color">@color/blue_primary</color>
+    <color name="btn_active_color">@color/blue_accent</color>
 </resources>
