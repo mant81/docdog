@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 배경을 흰색으로 설정 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+
+    <!-- 기존 아이콘 이미지를 가운데에 배치하고 크기를 조정 (여백 확보) -->
+    <!-- Android 12+ Splash Screen은 원형으로 잘리기 때문에 충분한 inset이 필요합니다. -->
+    <item
+        android:drawable="@drawable/ic_splash_icon"
+        android:gravity="center"
+        android:top="32dp"
+        android:bottom="32dp"
+        android:left="32dp"
+        android:right="32dp" />
+</layer-list>

@@ -10,12 +10,4 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
-
-    <!-- 스플래시 전용 테마 (Android 12+ 최적화) -->
-    <style name="Theme.App.Splash" parent="Theme.SplashScreen">
-        <!-- 시스템 스플래시 단계에서도 이미지가 보이도록 다시 연결 -->
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
-        <item name="windowSplashScreenBackground">@color/splash_background</item>
-        <item name="postSplashScreenTheme">@style/Theme.App</item>
-    </style>
 </resources>

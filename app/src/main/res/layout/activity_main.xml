@@ -4,12 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewer.MainActivity">
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
+    <!-- 메인 컨텐츠 영역: 인트로가 떠 있는 동안에는 아예 존재하지 않음(GONE) -->
     <LinearLayout
+        android:id="@+id/layoutMainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -53,12 +58,14 @@
                     android:layout_height="wrap_content"
                     android:text="파일 선택하여 열기" />
 
+                <!-- WebView도 초기에는 GONE 상태로 유지 -->
                 <WebView
                     android:id="@+id/webView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <!-- 변환 내역 탭 컨텐츠 -->
@@ -117,5 +124,10 @@
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
+
+    <!-- 인트로 화면: 최상단에 위치 -->
+    <include
+        android:id="@+id/layoutIntro"
+        layout="@layout/layout_intro" />
 
 </FrameLayout>

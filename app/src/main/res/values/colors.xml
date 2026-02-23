@@ -11,8 +11,8 @@
     <color name="gray_light">#F5F5F5</color>
     <color name="gray_dark">#424242</color>
 
-    <!-- 스플래시 및 아이콘 배경색 -->
-    <color name="splash_background">#9DD3FC</color>
+    <!-- 스플래시 배경색을 흰색으로 변경 -->
+    <color name="splash_background">#FFFFFF</color>
     <color name="ic_launcher_background">@color/blue_primary</color>
     <color name="ic_launcher_foreground_content">#FFFFFF</color>
 

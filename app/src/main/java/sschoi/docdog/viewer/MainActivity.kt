@@ -11,6 +11,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -18,13 +19,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import sschoi.docdog.viewer.data.ExpireOption
 import sschoi.docdog.viewer.data.HistoryItem
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var layoutHistory: LinearLayout
     private lateinit var layoutAbout: View
     private lateinit var layoutLoading: LinearLayout
+    private lateinit var layoutIntro: View
+    private lateinit var layoutMainContent: LinearLayout
     private lateinit var tvLoadingMessage: TextView
     
     private lateinit var webView: WebView
@@ -70,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -93,6 +95,9 @@ class MainActivity : AppCompatActivity() {
         btnClearHistory.setOnClickListener {
             showClearHistoryDialog()
         }
+
+        // 인트로 시퀀스 시작
+        startIntroSequence()
     }
 
     private fun initViews() {
@@ -101,12 +106,33 @@ class MainActivity : AppCompatActivity() {
         layoutHistory = findViewById(R.id.layoutHistory)
         layoutAbout = findViewById(R.id.layoutAbout)
         layoutLoading = findViewById(R.id.layoutLoading)
+        layoutIntro = findViewById(R.id.layoutIntro)
+        layoutMainContent = findViewById(R.id.layoutMainContent)
         tvLoadingMessage = findViewById(R.id.tvLoadingMessage)
         
         webView = findViewById(R.id.webView)
         btnSelectPpt = findViewById(R.id.btnSelectPpt)
         btnClearHistory = findViewById(R.id.btnClearHistory)
         historyRecyclerView = findViewById(R.id.historyRecyclerView)
+    }
+
+    private fun startIntroSequence() {
+        lifecycleScope.launch {
+            // 1. 2초 동안 인트로만 완벽하게 노출 (메인은 GONE 상태)
+            delay(2000)
+            
+            // 2. 메인 컨텐츠를 보이게 설정 (배경이 흰색이므로 인트로가 사라지는 동안 잔상 방지)
+            layoutMainContent.visibility = View.VISIBLE
+            layoutMainContent.alpha = 1f
+            
+            // 3. 인트로 화면을 페이드 아웃하며 제거
+            layoutIntro.animate()
+                .alpha(0f)
+                .setDuration(400) // 전환을 조금 더 빠르게
+                .withEndAction {
+                    layoutIntro.visibility = View.GONE
+                }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -199,6 +225,8 @@ class MainActivity : AppCompatActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 layoutLoading.visibility = View.GONE
+                // 페이지 로딩이 완료되면 WebView를 보이게 함
+                webView.visibility = View.VISIBLE
             }
 
             override fun onReceivedError(
